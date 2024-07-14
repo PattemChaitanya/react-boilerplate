@@ -1,8 +1,20 @@
 import React, { useState } from "react";
 import Layout from "./component/Layout";
+import {
+  Button,
+  CssBaseline,
+  GlobalStyles,
+  Grid,
+  ThemeProvider,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
+import theme from "./config/theme";
+import { globalStyles } from "./config/globalStyles";
 
 const App = () => {
-  const [darkMode, setDarkMode] = useState(false);
+  const darkThemeMq = useMediaQuery("(prefers-color-scheme: dark)");
+  const [darkMode, setDarkMode] = useState(darkThemeMq ? true : false);
   const headerTags = {
     title: "Home - React Boiler plate",
     keywords: "home",
@@ -12,21 +24,16 @@ const App = () => {
 
   return (
     <Layout headerTags={headerTags}>
-      <div className="container">
-        <h1>App</h1>
-        <button
-          onClick={() => {
-            setDarkMode(!darkMode);
-            if (darkMode) {
-              document.body.setAttribute("data-theme", "dark");
-            } else {
-              document.body.removeAttribute("data-theme");
-            }
-          }}
-        >
-          Change to {darkMode ? "light" : "dark"} mode
-        </button>
-      </div>
+      <GlobalStyles styles={globalStyles} />
+      <ThemeProvider theme={theme(darkMode ? "dark" : "light")}>
+        <CssBaseline />
+        <Grid direction="column" height="100vh" component="main">
+          <Typography variant="h1">App</Typography>
+          <Button onClick={() => setDarkMode(!darkMode)}>
+            Change to {!darkMode ? "dark" : "light"} mode
+          </Button>
+        </Grid>
+      </ThemeProvider>
     </Layout>
   );
 };

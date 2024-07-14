@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Starter boilerplate Project",
+  "name": "Basic starter for css only, material ui only, redux only.",
   "icons": [
     {
       "src": "favicon.ico",

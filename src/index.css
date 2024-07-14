@@ -6,6 +6,7 @@
     --background-color: #ffffff;
     --text-color: #000000;
     --border-color: #dddddd;
+    --primary-color-hover: #228B22;
 
     /* Typography */
     --font-family: 'Arial, sans-serif';
@@ -40,6 +41,7 @@
     --background-color: #121212;
     --text-color: #ffffff;
     --border-color: #444444;
+    --primary-color-hover: #228B22;
 
     /* Typography */
     --font-family: 'Arial, sans-serif';
@@ -79,9 +81,43 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: var(--text-color);
+  background-color: var(--background-color);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-color);
+  background-color: var(--primary-color);
+  transition: all 0.2s ease-in-out;
+}
+button:hover {
+  background-color: var(--primary-color-hover);
+}
+h1{
+  font-size: var(--font-size-h1);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  transition: all 0.2s ease-in-out;
+}
+  

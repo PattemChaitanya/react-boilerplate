@@ -27,7 +27,7 @@ const App = () => {
       <GlobalStyles styles={globalStyles} />
       <ThemeProvider theme={theme(darkMode ? "dark" : "light")}>
         <CssBaseline />
-        <Grid direction="column" height="100vh" component="main">
+        <Grid container direction="column" height="100vh" component="main">
           <Typography variant="h1">App</Typography>
           <Button onClick={() => setDarkMode(!darkMode)}>
             Change to {!darkMode ? "dark" : "light"} mode

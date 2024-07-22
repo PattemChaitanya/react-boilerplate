@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 
 function Layout(props) {
@@ -8,7 +8,7 @@ function Layout(props) {
   } = props;
   const [allTags, setAllTags] = useState([]);
 
-  const getTitles = () => {
+  const getTitles = useCallback(() => {
     const titles = [];
     if (title) {
       titles.push(<title key="head_title">{title}</title>);
@@ -21,21 +21,21 @@ function Layout(props) {
         />
       );
       titles.push(
-        <meta key="twitter_title" property="twitter:title" content={title} />
+        <meta key="twitter_title" name="twitter:title" content={title} />
       );
     }
     return titles;
-  };
+  }, [title, description]);
 
-  const getKeyWords = () => {
+  const getKeyWords = useCallback(() => {
     const collection = [];
     if (keywords) {
       collection.push(
-        <meta key="head_keywords" property="keywords" content={keywords} />
+        <meta key="head_keywords" name="keywords" content={keywords} />
       );
     }
     return collection;
-  };
+  }, [keywords]);
 
   useEffect(() => {
     const titles = getTitles();
@@ -43,8 +43,7 @@ function Layout(props) {
 
     const tags = [...titles, ...keyWords];
     setAllTags(tags);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [title, keywords]);
+  }, [title, keywords, getTitles, getKeyWords]);
 
   return (
     <>
